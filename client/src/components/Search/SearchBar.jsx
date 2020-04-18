@@ -7,11 +7,6 @@ class SearchBar extends React.Component {
     this.state = {
       userSearch: '',
       searchResults: []
-      // should make a get req to get items
-      // callback:  function(data) {
-      //   console.log('check me out', data.items);
-      //   exampleVideoData = data.items;
-      // }
     }
 
   }
@@ -19,18 +14,14 @@ class SearchBar extends React.Component {
 
   handleSubmit(e){
     e.preventDefault();
-    axios.get("/search/shows", e.target.value)
+    axios.get('/search/shows', e.target.value)
     .then((data) => {
       this.setState({
         searchResults: data
       })
     })
-    this.setState({ userSearch: e.target.value });
-
   }
 
-
-   // code to make something happen after selecting an option
 
   render(){
     return (
