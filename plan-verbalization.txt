@@ -1,0 +1,14 @@
+Building for user experience:
+
+1. User arrives at homepage
+  - should be an image carousel of concert pics
+2. User performs a search query for an artist
+3. User recieves a list of upcoming shows for that artist
+4. User chooses a show they are interested in going to (if they have proof of purchase, their setlist is entered twice)
+5. After submitting setlist, user is shown what the average setlist-to-date is based on the algorithm
+    -basics of algorithm:
+      * performs search query for all entries for song1 for that band at the specific show
+      * iterate over all entries for first song and store an object with songs as keys and values as instances
+      * iterate over Object.keys for each song in the set, create var for most entries so far
+        * if there are any songs that are duplicated, put the song in the position where it has more votes, and then set the 2nd most voted song in its place for that particular entry
+        * possibly use recursion for this algorithm

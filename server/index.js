@@ -32,10 +32,10 @@ app.get('/tourdates', (req, res) => {
 
 app.get('/search', (req, res) => {
   console.log('req.query: ', req.query);
-  console.log('req.query.search_query: ', String(req.query.search_query))
+  console.log('req.query.searchQuery: ', String(req.query.searchQuery))
 
   TourDates.find({
-    artist: req.query.search_query
+    artist: req.query.searchQuery
   }, (err, results) => {
     if (err) {
       return console.log('error getting from db: ', err)
@@ -49,7 +49,7 @@ app.get('/search', (req, res) => {
   // })
   // .catch((err) => {
   //   res.status(404);
-  //   res.send(`Could not conduct search for: ${req.query.search_query} in database`);
+  //   res.send(`Could not conduct search for: ${req.query.searchQuery} in database`);
   // });
 })
 
