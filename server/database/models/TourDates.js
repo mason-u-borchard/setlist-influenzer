@@ -7,7 +7,8 @@ const tourDateSchema = new mongoose.Schema({
   id: { type: Number, unique: true },
   artist: String,
   date: String,
-  location: String
+  location: String,
+  picture: String
 }
 );
 
