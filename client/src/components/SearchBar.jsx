@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import Form from './Show.jsx';
+import Form from './Form.jsx';
 
 class SearchBar extends React.Component {
   constructor(props){
@@ -57,7 +57,7 @@ class SearchBar extends React.Component {
       return (
         <div className="search-and-results" >
         <div className="search" >
-        <input className="search-input" type="text" placeholder="find events by artist" onChange={(e) => this.setState({userSearch: e.target.value})} />
+        <input className="form-input" id="search-input" type="text" placeholder="find events by artist" onChange={(e) => this.setState({userSearch: e.target.value})} />
         <input type="button" className="mcButton" value="Search" onClick={(e) => this.handleSearch(e)}/>
 
       </div>
@@ -88,7 +88,7 @@ class SearchBar extends React.Component {
       return (
         <div className="show-container">
         <div className="search" >
-        <input className="search-input" type="text" placeholder="find events by artist" onChange={(e) => this.setState({userSearch: e.target.value})} />
+        <input className="form-input" id="search-input" type="text" placeholder="find events by artist" onChange={(e) => this.setState({userSearch: e.target.value})} />
         <input type="button" className="mcButton" value="Search" onClick={(e) => this.handleSearch(e)}/>
 
       </div>

@@ -8,6 +8,7 @@ const tourDateSchema = new mongoose.Schema({
   artist: String,
   date: String,
   location: String,
+  venue: String,
   picture: String
 }
 );
