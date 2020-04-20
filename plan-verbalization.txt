@@ -6,7 +6,7 @@ Building for user experience:
 2. User performs a search query for an artist
 3. User recieves a list of upcoming shows for that artist
 4. User chooses a show they are interested in going to (if they have proof of purchase via video upload form, their setlist is entered twice)
-5. After submitting setlist, user is shown what the average setlist-to-date is based on the algorithm
+5. After submitting setlist, user is shown what the average setlist-to-date is based on the algorithm (both for the specific show and overall for the band)
     -basics of algorithm:
       * performs search query for all entries for song1 for that band at the specific show
       * iterate over all entries for first song and store an object with songs as keys and values as instances

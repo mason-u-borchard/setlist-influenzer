@@ -8,7 +8,7 @@ const app = express();
 const PORT = 1820;
 const db = require('./database/index.js');
 const TourDates = require('./database/models/TourDates.js');
-const SetList = require('./database/models/SetList.js')
+const Setlist = require('./database/models/SetList.js')
 
 
 
@@ -23,6 +23,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //   next();
 // });
 
+/////////////////////////
+///// GET reqs here /////
+////////////////////////
 app.get('/tourdates', (req, res) => {
   TourDates.find({})
   .then((data) => {
@@ -48,13 +51,47 @@ app.get('/search', (req, res) => {
   })
 })
 
+/// gets all posted setlists for  artist at that show
+app.get('/setlist-for', (req, res) => {
+
+  Setlist.find({
+    artist: req.query.artist,
+    venue: req.query.venue
+  })
+    .then((data) => {
+      res.send(data);
+      console.log('data for artist at venue: ', data)
+    })
+    .catch(function(err) {
+      console.log('Error trying to find data for the artists setlist submissions at a specific show:' + err);
+      res.status(404);
+    });
+});
+
+
+/// gets all posted setlists for artist in general
+app.get('/setlists-artist', (req, res) => {
+    Setlist.find({
+      artist: req.query.artist
+    })
+      .then((data) => {
+        res.send(data);
+        console.log('setlist data for a specfic artist in general', data);
+      })
+      .catch(function(err) {
+        console.log('Error trying to find data for the artists setlist submissions. ' + err);
+        res.status(404);
+      });
+  });
+
+
+  /////////////////////////
+///// POST reqs here /////
+////////////////////////
+
 // post to user's list of events they are planning on attending
-
-
 app.post('/setlist', (req, res) => {
-  console.log(JSON.stringify('req.body::::::::', req.body));
-  var entry = req.body;
-  SetList.create({
+  Setlist.create({
     artist: req.body.artist,
     user: req.body.user,
     songs: req.body.songs,
@@ -67,6 +104,19 @@ app.post('/setlist', (req, res) => {
       res.status(404);
       console.log(`Could not add new setlist entry to db, err:`);
       res.send(err);
+    });
+});
+
+// post to db based on typed query (good for populating db manually using postman)
+app.post('/setlistquery', function(req, res) {
+  console.log(JSON.stringify('req.query', req.query));
+  Setlist.create(req.query)
+    .then(function(data) {
+      res.send(data);
+    })
+    .catch(function(err) {
+      res.status(404);
+      console.log('Could not post new setlist query');
     });
 });
 

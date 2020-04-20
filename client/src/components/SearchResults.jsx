@@ -1,6 +1,6 @@
 // import React from 'react';
 // import SearchResult from './SearchResult.jsx';
-// import SearchBar from './SearchBar.jsx';
+// import SearchAndSubmit from './SearchAndSubmit.jsx';
 
 const SearchResults = (props) => {
   return(

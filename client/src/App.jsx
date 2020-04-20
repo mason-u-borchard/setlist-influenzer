@@ -1,10 +1,11 @@
 import React from "react";
 import axios from "axios";
-import SearchBar from "./components/SearchBar.jsx";
-import Home from "./components/Home.jsx";
+import SearchAndSubmit from "./components/SearchAndSubmit.jsx";
+import Carousel from "./components/Carousel.jsx";
 import Shows from "./components/Shows.jsx";
 import Contact from "./components/Contact.jsx";
-import About from "./components/Contact.jsx";
+import About from "./components/About.jsx";
+import Login from './components/Login.jsx';
 import styled from "styled-components";
 import {
   BrowserRouter as Router,
@@ -52,8 +53,10 @@ class App extends React.Component {
     return (
       <Wrapper>
       <div>
-        <SearchBar/>
+        <SearchAndSubmit/>
+
       </div>
+      <Carousel/>
       </Wrapper>
     )
   }

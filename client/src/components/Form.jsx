@@ -1,11 +1,11 @@
 import React from 'react';
-import SearchBar from './SearchBar.jsx';
+import SearchAndSubmit from './SearchAndSubmit.jsx';
 import axios from 'axios';
 
 class Form extends React.Component {
   constructor(props){
     super(props);
-    console.log(props, 'props')
+    console.log(this.props, 'props')
     this.state = {
       setlistSubmitted: false,
       topSetlists: [],
