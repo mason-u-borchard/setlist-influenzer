@@ -94,11 +94,13 @@ class SearchAndSubmit extends React.Component {
   render(){
     if (this.state.showSelected === false){
       return (
-        <div className="search-and-results" >
+        <div className="box" >
         <div className="search" >
+        <p>
         <input className="form-input" id="search-input" type="text" placeholder="find events by artist" onChange={(e) => this.setState({userSearch: e.target.value})} />
         <Router> <Link to="/search-events"> <input type="button" className="mcButton" value="Search" onClick={(e) => this.handleSearch(e)}/></Link></Router>
         <Route path="/search-events" component={SearchAndSubmit} />
+        </p>
       </div>
       <ul className="show-list">
       { this.state.searchResults.map((item, i) => {
@@ -125,10 +127,14 @@ class SearchAndSubmit extends React.Component {
 
     } else {
       return (
-        <div className="show-container">
+        <div className="box">
         <div className="search">
+        <p>
         <input className="form-input" id="search-input" type="text" placeholder="find events by artist" onChange={(e) => this.setState({userSearch: e.target.value})} />
-        <input type="button" className="mcButton" value="Search" onClick={(e) => this.handleSearch(e)}/>
+        <Router> <Link to="/search-events"> <input type="button" className="mcButton" value="Search" onClick={(e) => this.handleSearch(e)}/></Link></Router>
+        <Route path="/search-events" component={SearchAndSubmit} />
+        </p>
+
       </div>
       <li className="search-item" id={this.state.currentSelection.id}>
           <div className="results-row">

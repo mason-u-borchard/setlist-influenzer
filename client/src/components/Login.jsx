@@ -63,10 +63,15 @@ class Login extends React.Component {
 						/>
 					</div>
 
+          <p>
 					<input type="submit" value="Login" />
+          </p>
+          <p>
+          <Link to="/register"><input className="mcButton" id="register-redirect" type="button" value="Don't have an account? Create one here" /></Link>
+          </p>
 				</form>
 
-				<Link to="/register"><input id="register-redirect" type="button" value="Don't have an account? Create one here" /></Link>
+
 			</div>
 		);
 	}

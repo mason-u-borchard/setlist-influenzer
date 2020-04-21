@@ -37,7 +37,7 @@ class Register extends React.Component {
 
 	render() {
 		return (
-			<div className="register">
+			<div className="register-container">
 				<form onSubmit={this.displayLogin}>
 					<h2>Register</h2>
 
@@ -74,11 +74,10 @@ class Register extends React.Component {
 					<div className="password">
 						<input type="password" placeholder="Confirm Password" name="password1" />
 					</div>
-
-
+          <Link className="register" to="/" className="register"><input type="submit" value="Create Account" /></Link>
 				</form>
 
-				<Link className="register" to="/" className="register"><input type="submit" value="Create Account" /></Link>
+
 			</div>
 		);
 	}
