@@ -3,26 +3,27 @@ import ItemsCarousel from 'react-items-carousel';
 import _ from 'underscore';
 import styled from "styled-components";
 
-const noOfItems = 12;
-const noOfCards = 3;
+const noOfItems = 6;
+const noOfCards = 1;
 const autoPlayDelay = 2000;
 const chevronWidth = 40;
 
-const CarouselWrapper = styled.div`
-  padding: 0 ${chevronWidth}px;
-  max-width: 1000px;
-  margin: 0 auto;
-`;
+// const CarouselWrapper = styled.div`
+//   padding: 0 ${chevronWidth}px;
+//   max-width: 1000px;
+//   margin: 0 auto;
+// `;
 
-const SlideItem = styled.div`
-  height: 200px;
-  background: #EEE;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  font-weight: bold;
-`;
+// const SlideItem = styled.div`
+//   height: 500;
+//   width: 800;
+//   background: #EEE;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   font-size: 20px;
+//   font-weight: bold;
+// `;
 
 
 
@@ -31,17 +32,13 @@ const SlideItem = styled.div`
     super(props);
     console.log('this.props carousel: ', this.props)
     this.state = {
-      items: [ 'https://i.picsum.photos/id/737/180/300.jpg', 'https://i.picsum.photos/id/447/300/300.jpg', 'https://i.picsum.photos/id/446/180/300.jpg',
-      'https://i.picsum.photos/id/757/180/300.jpg',
-      'https://i.picsum.photos/id/767/300/300.jpg',
-      'https://i.picsum.photos/id/334/180/300.jpg',
-      'https://i.picsum.photos/id/791/180/300.jpg',
-      'https://i.picsum.photos/id/730/180/300.jpg',
-      'https://i.picsum.photos/id/731/180/300.jpg', 'https://i.picsum.photos/id/367/180/300.jpg',
-      'https://i.picsum.photos/id/366/180/300.jpg',
-      'https://i.picsum.photos/id/336/300/300.jpg',
-      'https://i.picsum.photos/id/382/180/300.jpg',
-      'https://i.picsum.photos/id/182/180/300.jpg'
+      items: [ 'https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/abgt2.jpg',
+      'https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/jrad1280x835.jpg',
+      'https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/concert4.jpg',
+      'https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/concert1.jpg',
+      'https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/abgt2.jpg',
+      'https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/concert3.jpg',
+      'https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/concert4.jpg'
     ],
       activeItemIndex: 0
 
@@ -75,30 +72,30 @@ const SlideItem = styled.div`
       children,
     } = this.state;
     return (
-      <CarouselWrapper>
+
         <ItemsCarousel
-          gutter={12}
-          numberOfCards={noOfCards}
+          gutter={10}
+          numberOfCards={1}
           activeItemIndex={this.state.activeItemIndex}
           requestToChangeActive={this.onChange}
-          rightChevron={<button>{'>'}</button>}
-          leftChevron={<button>{'<'}</button>}
+          rightChevron={<button>{''}</button>}
+          leftChevron={<button>{''}</button>}
           chevronWidth={chevronWidth}
           outsideChevron
 
         >
-        {Array.from(new Array(14)).map((_, i) =>
+        {Array.from(new Array(7)).map((_, i) =>
   <div className = 'carousel-img'
     key={i}
     style={{
-      height: 300,
-      width: 180,
-      background: `url(${this.state.items[i]})` || `url(https://i.picsum.photos/id/63${Math.floor(Math.random() * 9)}/180/300.jpg)`
+      height: 500,
+
+      background: `url(${this.state.items[i]})` ||  `url(https://i.picsum.photos/id/63${Math.floor(Math.random() * 9)}/800/500.jpg)`
     }}
   />
 )}
 </ItemsCarousel>
-      </CarouselWrapper>
+
     );
   }
 }

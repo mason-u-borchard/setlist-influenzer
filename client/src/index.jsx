@@ -5,28 +5,34 @@ import App from './App.jsx';
 import Shows from './components/Shows.jsx';
 import Contact from './components/Contact.jsx';
 import Login from './components/Login.jsx';
+import Register from './components/Register.jsx';
 
 const routing = (
   <Router>
     <div>
-      <ul>
+      <ul id="menu">
         <li>
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/shows">Shows</Link>
+          <Link to="/contests">Contests</Link>
         </li>
         <li>
           <Link to="/contact">Contact Us</Link>
         </li>
         <li>
-          <Link to="/login">Sign-up/Login</Link>
+          <Link to="/login">Login</Link>
+        </li>
+        <li>
+          <Link to="/register">Register</Link>
         </li>
       </ul>
       <Route exact path="/" component={App} />
-      <Route path="/shows" component={Shows} />
-      <Route path="/contact" component={Contact} />
-      <Route path="/login" component={Login} />
+      <Route exact path="/shows" component={Shows} />
+      <Route exact path="/contact" component={Contact} />
+
+        <Route exact path="/register" component={Register} />
+      <Route exact path="/login" component={Login} />
     </div>
   </Router>
 )

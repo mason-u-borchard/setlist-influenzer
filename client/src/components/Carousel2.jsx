@@ -2,6 +2,81 @@ import React from 'react';
 import ItemsCarousel from 'react-items-carousel';
 import _ from 'underscore';
 
+
+{
+  id: 1,
+  artist: "Above and Beyond",
+  date: "January 16, 2021",
+  time: "18:00",
+  venue: "Greek Theatre",
+  location: "UC Berkeley, CA, USA",
+  picture: "https://albumart17272317847239189.s3-us-west-1.amazonaws.com/Above and Beyond-2016.jpg"
+},
+{
+  id: 2,
+  artist: "Above and Beyond",
+  date: "February 2, 2021",
+  time: "20:30",
+  venue: "Ekebergveien",
+  location: "Oslo, Norway",
+  picture: "https://albumart17272317847239189.s3-us-west-1.amazonaws.com/Above and Beyond-2016.jpg"
+},
+{
+  id: 3,
+  artist: "Above and Beyond",
+  date: "April 13, 2021",
+  time: "17:30",
+  venue: "The Fillmore",
+  location: "New Orleans, LA, USA",
+  picture: "https://albumart17272317847239189.s3-us-west-1.amazonaws.com/Above and Beyond-2016.jpg"
+},
+{
+  id: 4,
+  artist: "Above and Beyond",
+  date: "June 22, 2021",
+  time: "18:30",
+  venue: "AntiSocial",
+  location: "Mumbai, India",
+  picture: "https://albumart17272317847239189.s3-us-west-1.amazonaws.com/Above and Beyond-2016.jpg"
+},
+{
+  id: 5,
+  artist: "Above and Beyond",
+  date: "June 30, 2021",
+  time: "19:00",
+  venue: "El Plaza Condesa",
+  location: "Mexico City, Mexico",
+  picture: "https://albumart17272317847239189.s3-us-west-1.amazonaws.com/Above and Beyond-2016.jpg"
+},
+{
+  id: 6,
+  artist: "Above and Beyond",
+  date: "July 19, 2021",
+  time: "18:00",
+  venue: "Starland Ballroom",
+  location: "Sayreville, New Jersey, USA",
+  picture: "https://albumart17272317847239189.s3-us-west-1.amazonaws.com/Above and Beyond-2016.jpg"
+},
+{
+  id: 7,
+  artist: "Above and Beyond",
+  date: "September 5, 2021",
+  time: "21:00",
+  venue: "Fox Theatre",
+  location: "Oakland, CA, USA",
+  picture: "https://albumart17272317847239189.s3-us-west-1.amazonaws.com/Above and Beyond-2016.jpg"
+},
+{
+  id: 8,
+  artist: "Above and Beyond",
+  date: "October 31, 2021",
+  time: "19:30",
+  venue: "Inkonst",
+  location: "Malmö, Sweden",
+  picture: "https://albumart17272317847239189.s3-us-west-1.amazonaws.com/Above and Beyond-2016.jpg"
+}
+
+
 class Carousel extends React.Component {
   constructor(props) {
     super(props);

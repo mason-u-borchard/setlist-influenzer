@@ -4,6 +4,7 @@ mongoose.Promise = global.Promise;
 
 
 const setlistSchema = new mongoose.Schema({
+  id: { type: Number, unique: true },
   artist: String,
   location: String,
   venue: String,

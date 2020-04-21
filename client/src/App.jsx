@@ -6,6 +6,7 @@ import Shows from "./components/Shows.jsx";
 import Contact from "./components/Contact.jsx";
 import About from "./components/About.jsx";
 import Login from './components/Login.jsx';
+import Register from './components/Login.jsx';
 import styled from "styled-components";
 import {
   BrowserRouter as Router,
@@ -18,7 +19,6 @@ import {
 
 const Wrapper = styled.section`
 padding: 4em;
-background: papayawhip;
 `;
 
 class App extends React.Component {
@@ -51,6 +51,7 @@ class App extends React.Component {
 
   render() {
     return (
+      <div>
       <Wrapper>
       <div>
         <SearchAndSubmit/>
@@ -58,6 +59,7 @@ class App extends React.Component {
       </div>
       <Carousel/>
       </Wrapper>
+      </div>
     )
   }
 }
