@@ -37,22 +37,22 @@ class Register extends React.Component {
 
 	render() {
 		return (
-			<div className="register-container">
+			<div className="auth">
 				<form onSubmit={this.displayLogin}>
 					<h2>Register</h2>
 
-					<div className="name">
-						<input
+					<p>
+						<input className="login"
 							type="text"
 							placeholder="Full Name"
 							name="fullname"
 							value={this.state.fullname}
 							onChange={this.update}
 						/>
-					</div>
+					</p>
 
 					<div className="email">
-						<input
+						<input className="login"
 							type="text"
 							placeholder="Enter your email"
 							name="email"
@@ -61,20 +61,23 @@ class Register extends React.Component {
 						/>
 					</div>
 
-					<div className="pasword">
+
+          <p>
 						<input
+            className="login"
 							type="password"
 							placeholder="Password"
 							name="password"
 							value={this.state.password}
 							onChange={this.update}
 						/>
-					</div>
+            </p>
 
-					<div className="password">
-						<input type="password" placeholder="Confirm Password" name="password1" />
-					</div>
-          <Link className="register" to="/" className="register"><input type="submit" value="Create Account" /></Link>
+
+            <p>
+						<input className="login" type="password" placeholder="Confirm Password" name="password1" />
+            </p>
+          <Link  to="/" ><input id="register-redirect" type="submit" value="Create Account" /></Link>
 				</form>
 
 

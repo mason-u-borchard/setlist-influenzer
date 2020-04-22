@@ -72,6 +72,21 @@ app.get('/setlist-for', (req, res) => {
 /// gets all posted setlists for artist in general
 app.get('/setlists-artist', (req, res) => {
     Setlist.find({
+      artist: req.body.artist
+    })
+      .then((data) => {
+        res.send(data);
+        console.log('setlist data for a specfic artist in general', data);
+      })
+      .catch(function(err) {
+        console.log('Error trying to find data for the artists setlist submissions. ' + err);
+        res.status(404);
+      });
+  });
+
+
+  app.get('/setlists-artist-pm', (req, res) => {
+    Setlist.find({
       artist: req.query.artist
     })
       .then((data) => {

@@ -1,9 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 
 
-const LoginWrapper = styled.section`
-`;
 import { Link } from 'react-router-dom';
 
 class Login extends React.Component {
@@ -40,11 +37,11 @@ class Login extends React.Component {
 
 	render() {
 		return (
-			<div className="login">
+			<div className="auth">
 				<form onSubmit={this.displayLogin}>
 					<h2>Login to your account</h2>
 					<div className="username">
-						<input
+						<input className="login"
 							type="text"
 							placeholder="Username..."
 							value={this.state.email}
@@ -53,21 +50,24 @@ class Login extends React.Component {
 						/>
 					</div>
 
-					<div className="password">
-						<input
+					<div className="auth">
+						<p><input className="login"
 							type="password"
 							placeholder="Password..."
 							value={this.state.password}
 							onChange={this.update}
 							name="password"
 						/>
+            </p>
+
 					</div>
 
+
           <p>
-					<input type="submit" value="Login" />
+          <input id="login-redirect" type="submit" value="Login" />
           </p>
           <p>
-          <Link to="/register"><input className="mcButton" id="register-redirect" type="button" value="Don't have an account? Create one here" /></Link>
+          <Link to="/register"><input className="mcButton" id="register-redirect" type="button" value="Create Account" /></Link>
           </p>
 				</form>
 

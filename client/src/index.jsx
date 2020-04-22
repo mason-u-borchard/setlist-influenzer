@@ -6,6 +6,7 @@ import Shows from './components/Shows.jsx';
 import Contact from './components/Contact.jsx';
 import Login from './components/Login.jsx';
 import Register from './components/Register.jsx';
+import SearchAndSubmit from "./components/SearchAndSubmit.jsx";
 
 const routing = (
   <Router>
