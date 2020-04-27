@@ -16,12 +16,15 @@ class SearchAndSubmit extends React.Component {
       currentUser: 'mctallica',
       setlistSubmitted: false,
       topSetlists: [],
-      songs:[]
+      songs:[],
+      allSetlists: []
     }
     this.handleSearch = this.handleSearch.bind(this);
     this.handleEntry = this.handleEntry.bind(this);
 
     this.handleRedirect = this.handleRedirect.bind(this)
+
+    this.calculateTopSetlist = this.calculateTopSetlist.bind(this);
 
   }
 
@@ -33,6 +36,63 @@ class SearchAndSubmit extends React.Component {
       .catch((err) => {
         console.log(err);
         })
+  }
+
+  calculateTopSetlist(){
+    var song1 = [];
+    var song2 = [];
+    var song3 = [];
+    var song4 = [];
+    var song5 = [];
+    var song6 = [];
+    var song7 = [];
+    var song8 = [];
+    var result = {};
+    // iterate over array of objects
+    for (var i = 0; i < this.state.allSetlists.length; i++){
+      result[i] = [];
+      // iterate over the song key which contains array of songs for each obj
+      for (var j = 0; j < 9; j++){
+        // push the songs into corresponding key in the result obj 0-7
+        result[i].push(this.state.allSetlists[i].songs[j])
+        console.log('result', result)
+      }
+    }
+    // iterate over keys 0-7 in result obj
+    for (var key in result){
+      var objBySong = {};
+      // iterate over the array associate with each key in result (ie: first array is all choices for a first song)
+      for (var k = 0; k < result[key].length; k++){
+        // if entry is blank or anything falsy
+        if (result[key][k] === '' || !result[key][k]){
+          continue;
+        }
+        // if the song is not already a key
+        if (objBySong[result[key][k]] === undefined){
+          // make a space for it and set to 1
+          objBySong[result[key][k]] = 1;
+        }
+        // else add one to the song
+        objBySong[result[key][k]]++;
+
+      }
+      // set max equal to first song by default
+      var max = Object.values(objBySong)[0];
+      // iterate over object values in objBySong which are numbers
+      for (var m = 0; m < Object.values(objBySong).length; m++){
+        // if song was chosen more than max
+        if (Object.values(objBySong)[m] > max){
+          // it is now the max
+          max = Object.values(objBySong)[m];
+          topSong = Object.keys(objBySong)[m];
+        }
+      }
+      // push topSong title into topSetlist array
+      this.setState({
+        topSetlist: this.state.topSetlist.push(topSong)
+      })
+      console.log('current topSetList array', this.state.topSetlist)
+    }
   }
 
   handleEntry(e) {
@@ -48,21 +108,26 @@ class SearchAndSubmit extends React.Component {
       user: this.state.currentUser,
       songs: this.state.songs,
       upvotes: 0
-    }
+    };
     axios.post('/setlist', setlistObj)
       .then((res) => {
-        console.log('res.data: ', res.data);
+
+        var artistQuery = res.data.artist;
+
+        console.log(this.state.currentSelection.artist)
+
+
+        console.log('res.data.artist: ', res.data.artist);
+        axios.get(`/setlists-artist?artist=${artistQuery}`)
       })
-      .then(() => {
+      .then((data) => {
+        console.log('data from getting all setlists', data)
         this.setState({
-          view: 'submitted'
+          allSetlists: data
         })
       })
       .then(() => {
-        var getArtist = {
-          artist: this.state.currentSelection.artist
-        }
-        axios.get('/setlists-artist', getArtist)
+        this.calculateTopSetlist()
       })
       .catch((err) => {
         console.log('error submitting setlist entry: ', err);
@@ -193,14 +258,14 @@ class SearchAndSubmit extends React.Component {
   <div class="one">
   <h5>Your {this.state.currentSelection.artist} setlist</h5>
     <ul>
-      <li>All In</li>
-      <li>IOU</li>
-      <li>Moonlight</li>
-      <li>Into the Sun</li>
-      <li>Young London</li>
-      <li>Curiousity</li>
-      <li>Into the Sun</li>
-      <li>No One</li>
+      <li>{this.state.songs[0]}</li>
+      <li>{this.state.songs[1]}</li>
+      <li>{this.state.songs[2]}</li>
+      <li>{this.state.songs[3]}</li>
+      <li>{this.state.songs[4]}</li>
+      <li>{this.state.songs[5]}</li>
+      <li>{this.state.songs[6]}</li>
+      <li>{this.state.songs[7]}</li>
 
     </ul>
   </div>
@@ -208,14 +273,14 @@ class SearchAndSubmit extends React.Component {
   <div class="three">
   <h5>Average set for {this.state.currentSelection.artist}</h5>
   <ul>
-      <li>Death Valley</li>
-      <li>IOU</li>
-      <li>All In</li>
-      <li>Curiousity</li>
-      <li>Eight to 16</li>
-      <li>Into the Sun</li>
-      <li>No One</li>
-      <li>The Flight of the Apollo</li>
+      <li>{this.state.topSetlist[0]}</li>
+      <li>{this.state.topSetlist[1]}</li>
+      <li>{this.state.topSetlist[2]}</li>
+      <li>{this.state.topSetlist[3]}</li>
+      <li>{this.state.topSetlist[4]}</li>
+      <li>{this.state.topSetlist[5]}</li>
+      <li>{this.state.topSetlist[6]}</li>
+      <li>{this.state.topSetlist[7]}</li>
     </ul>
   </div>
 

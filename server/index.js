@@ -26,6 +26,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 /////////////////////////
 ///// GET reqs here /////
 ////////////////////////
+
+
+/// get all tour dates for all artists
+
 app.get('/tourdates', (req, res) => {
   TourDates.find({})
   .then((data) => {
@@ -36,6 +40,8 @@ app.get('/tourdates', (req, res) => {
   });
 })
 
+
+/// get all tour dates for a specific artist
 app.get('/search', (req, res) => {
   console.log('req.query: ', req.query);
   console.log('req.query.searchQuery: ', String(req.query.searchQuery))
@@ -71,8 +77,12 @@ app.get('/setlist-for', (req, res) => {
 
 /// gets all posted setlists for artist in general
 app.get('/setlists-artist', (req, res) => {
+  console.log('req.query.artist', req.query.artist);
+  // console.log('req.query', req.query);
+  // console.log('req.params', req.params);
+
     Setlist.find({
-      artist: req.body.artist
+      artist: req.query.artist
     })
       .then((data) => {
         res.send(data);
@@ -84,10 +94,13 @@ app.get('/setlists-artist', (req, res) => {
       });
   });
 
+////// get average setlist for a particular artist at a specific venue
 
   app.get('/setlists-artist-pm', (req, res) => {
     Setlist.find({
-      artist: req.query.artist
+      artist: req.query.artist,
+      location: req.query.location,
+      venue: req.query.venue
     })
       .then((data) => {
         res.send(data);
