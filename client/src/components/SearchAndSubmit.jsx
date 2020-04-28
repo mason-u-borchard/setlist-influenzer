@@ -40,21 +40,23 @@ class SearchAndSubmit extends React.Component {
         console.log('result', result)
       }
     }
-    // iterate over keys 0-7 in result obj
-    // var setObjBySong = {0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: []}
-    var setObjBySong = {};
+    //iterate over keys 0-7 in result obj
+    var setObjBySong = {0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: []}
+    // var setObjBySong = {};
     for (var key in result){
       console.log('result[key]', result[key])
-      // this creates one persons setlist
-      // var setArr = result[key].join(',').split(', ');
-      var setArr = result[key];
+      //this creates one persons setlist
+      var setArr = result[key].join(',').split(', ');
+      // var setArr = result[key];
       console.log('setArr: should be one setlist', setArr)
       // iterate over that persons setlist
      var songAtNumArr = []
+
       for (var k = 0; k < 8; k++){
         // each key 1-8 will contain all songs by all fans at the position
         setObjBySong[k].push(setArr[k]);
         console.log('setObjBySong[k], should be an array with songs', setObjBySong[k]);
+        console.log('setObjBySong', setObjBySong);
         // if (setArr[k] === '' || !setArr[k]){
         //   continue;
         // }
