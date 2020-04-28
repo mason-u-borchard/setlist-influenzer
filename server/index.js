@@ -132,11 +132,11 @@ app.post('/setlist', (req, res) => {
     upvotes: req.body.upvotes
   })
   .then((data) => {
-    res.json(data);
+    res.send(data);
   })
     .catch(function(err) {
       res.status(404);
-      console.log(`Could not add new setlist entry to db, err:`);
+      console.log(`Could not add new setlist entry to db, err: ${err}`);
       res.send(err);
     });
 });
