@@ -321,7 +321,7 @@ class SearchAndSubmit extends React.Component {
       <li>{this.state.topSetlist[4]}</li>
       <li>{this.state.topSetlist[5]}</li>
       <li>{this.state.topSetlist[6]}</li>
-      <li>{this.state.topSetlist[7]}</li>
+      <li>{this.state.topSetlist[7].split(',')[0]}</li>
     </ul>
   </div>
 
