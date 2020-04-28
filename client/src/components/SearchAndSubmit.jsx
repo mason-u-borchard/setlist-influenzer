@@ -6,7 +6,7 @@ import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 class SearchAndSubmit extends React.Component {
   constructor(props){
     super(props);
-    console.log('props', props)
+    this.finalAverages = [];
     this.state = {
       userSearch: '',
       searchResults: [],
@@ -15,7 +15,7 @@ class SearchAndSubmit extends React.Component {
       currentSelection: null,
       currentUser: 'mctallica',
       setlistSubmitted: false,
-      topSetlist: [],
+      topSetlist: this.finalAverages,
       songs:[],
       allSetlists: []
     }
@@ -72,6 +72,7 @@ class SearchAndSubmit extends React.Component {
 
         }
       }
+
         for (var key in setObjBySong){
           var songsAtPosition = {};
           for (var x = 0; x < setObjBySong[key].length; x++){
@@ -107,12 +108,17 @@ class SearchAndSubmit extends React.Component {
 
 
       }
-      this.setState({
-        topSetlist: this.state.topSetlist.push(topSong)
-      })
+      this.finalAverages.push(topSong)
+      // this.setState({
+      //   topSetlist: this.state.topSetlist.push(topSong)
+      // })
 
 
     }
+      this.setState({
+        topSetlist: this.finalAverages,
+        view: 'submitted'
+      })
 
   }
 
@@ -289,8 +295,8 @@ class SearchAndSubmit extends React.Component {
 
 
 
-    <div class="grid">
-  <div class="one">
+    <div className="grid">
+  <div className="one">
   <h5>Your {this.state.currentSelection.artist} setlist</h5>
     <ul>
       <li>{this.state.songs[0]}</li>
@@ -305,7 +311,7 @@ class SearchAndSubmit extends React.Component {
     </ul>
   </div>
 
-  <div class="three">
+  <div className="three">
   <h5>Average set for {this.state.currentSelection.artist}</h5>
   <ul>
       <li>{this.state.topSetlist[0]}</li>
@@ -321,11 +327,11 @@ class SearchAndSubmit extends React.Component {
 
 </div>
 
-{/* <div class="grid rtl">
-  <div class="one">1</div>
+{/* <div className="grid rtl">
+  <div className="one">1</div>
 
-  <div class="three">3</div>
-  <div class="four">4</div>
+  <div className="three">3</div>
+  <div className="four">4</div>
 </div> */}
 
 </div>
