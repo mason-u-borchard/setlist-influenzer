@@ -63,7 +63,7 @@ app.get('/setlist-for', (req, res) => {
   Setlist.find({
     artist: req.query.artist,
     venue: req.query.venue
-  })
+  }, )
     .then((data) => {
       res.send(data);
       console.log('data for artist at venue: ', data)
@@ -77,21 +77,27 @@ app.get('/setlist-for', (req, res) => {
 
 /// gets all posted setlists for artist in general
 app.get('/setlists-artist', (req, res) => {
-  console.log('req.query.artist', req.query.artist);
+  console.log('req.query.artist', req.query.artistQuery);
   // console.log('req.query', req.query);
   // console.log('req.params', req.params);
 
     Setlist.find({
-      artist: req.query.artist
+      artist: req.query.artistQuery
+    }, (err, results) => {
+      if (err) {
+        return console.log('error getting all setlists for an artist from db: ', err)
+      }
+      res.json(results);
+      console.log('results[0]', results[0]);
     })
-      .then((data) => {
-        res.send(data);
-        console.log('setlist data for a specfic artist in general', data);
-      })
-      .catch(function(err) {
-        console.log('Error trying to find data for the artists setlist submissions. ' + err);
-        res.status(404);
-      });
+      // .then((data) => {
+      //   res.send(data);
+      //   console.log('setlist data for a specfic artist in general', data);
+      // })
+      // .catch(function(err) {
+      //   console.log('Error trying to find data for the artists setlist submissions. ' + err);
+      //   res.status(404);
+      // });
   });
 
 ////// get average setlist for a particular artist at a specific venue

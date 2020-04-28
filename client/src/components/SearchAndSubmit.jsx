@@ -15,7 +15,7 @@ class SearchAndSubmit extends React.Component {
       currentSelection: null,
       currentUser: 'mctallica',
       setlistSubmitted: false,
-      topSetlists: [],
+      topSetlist: [],
       songs:[],
       allSetlists: []
     }
@@ -64,20 +64,24 @@ class SearchAndSubmit extends React.Component {
       // iterate over the array associate with each key in result (ie: first array is all choices for a first song)
       for (var k = 0; k < result[key].length; k++){
         // if entry is blank or anything falsy
+        console.log('result[key][k]', result[key][k])
         if (result[key][k] === '' || !result[key][k]){
           continue;
         }
         // if the song is not already a key
-        if (objBySong[result[key][k]] === undefined){
+        if (objBySong[key][k] === undefined){
           // make a space for it and set to 1
-          objBySong[result[key][k]] = 1;
+          objBySong[key][k] = 1;
+          console.log('objBySong', objBySong)
         }
         // else add one to the song
-        objBySong[result[key][k]]++;
+        objBySong[key][k]++;
+        console.log('objBySong after adding ++', objBySong)
 
       }
       // set max equal to first song by default
       var max = Object.values(objBySong)[0];
+      var topSong = Object.keys(objBySong)[0];
       // iterate over object values in objBySong which are numbers
       for (var m = 0; m < Object.values(objBySong).length; m++){
         // if song was chosen more than max
@@ -109,25 +113,28 @@ class SearchAndSubmit extends React.Component {
       songs: this.state.songs,
       upvotes: 0
     };
+
     axios.post('/setlist', setlistObj)
       .then((res) => {
 
-        var artistQuery = res.data.artist;
+        var artistQuery = this.state.currentSelection.artist;
 
         console.log(this.state.currentSelection.artist)
 
 
-        console.log('res.data.artist: ', res.data.artist);
-        axios.get(`/setlists-artist?artist=${artistQuery}`)
-      })
-      .then((data) => {
-        console.log('data from getting all setlists', data)
-        this.setState({
-          allSetlists: data
+        // console.log('res.data.artist: ', res.data.artist);
+        // setTimeout(function(){
+        //   axios.get(`/setlists-artist?artist=${artistQuery}`)
+        //  }, 3000);
+        axios.get(`/setlists-artist`, {params: {artistQuery: artistQuery} }).then((data) => {
+          console.log('data from getting all setlists', data.data)
+          this.setState({
+            allSetlists: data.data
+          })
         })
-      })
-      .then(() => {
-        this.calculateTopSetlist()
+        .then(() => {
+          this.calculateTopSetlist()
+        })
       })
       .catch((err) => {
         console.log('error submitting setlist entry: ', err);
@@ -221,7 +228,7 @@ class SearchAndSubmit extends React.Component {
 
 
           <div>
-      <form onSubmit={(e) => this.handleEntry()}>
+      <form onSubmit={(e) => this.handleEntry(e)}>
       <div className="setlist-prompt"><h3>What setlist would you like to see {this.state.currentSelection.artist} perform at {this.state.currentSelection.venue}?</h3></div>
              <p> <input className="form-input" id="song-input1" type="text" placeholder="enter a song" /> </p>
              <p> <input className="form-input" id="song-input2" type="text" placeholder="enter a song"  /> </p>
