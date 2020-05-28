@@ -6,16 +6,12 @@ const ContactWrapper = styled.section`
 background: yellow;
 `;
 
-class Contact extends React.Component {
-
-
-
-  render() {
-    return (
-      <ContactWrapper>
-    <h1>Contact</h1>
+const Contact = (props) => {
+  console.log('props contact', props);
+  return (
+    <ContactWrapper>
+      <h1>Contact</h1>
     </ContactWrapper>
-      )
-  }
-}
-export default Contact
+  );
+};
+export default Contact;

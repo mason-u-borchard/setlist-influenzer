@@ -155,11 +155,6 @@ class SearchAndSubmit extends React.Component {
 
         console.log(this.state.currentSelection.artist)
 
-
-        // console.log('res.data.artist: ', res.data.artist);
-        // setTimeout(function(){
-        //   axios.get(`/setlists-artist?artist=${artistQuery}`)
-        //  }, 3000);
         axios.get(`/setlists-artist`, {params: {artistQuery: artistQuery} }).then((data) => {
           console.log('data from getting all setlists', data.data)
           this.setState({
@@ -196,23 +191,10 @@ class SearchAndSubmit extends React.Component {
       })
     }
 
-  // handleSubmit(){
-  //   // e.preventDefault();
-  //   // console.log('e.target', e.target);
 
-  //     // filter search results so that anything with the index of the query (to lower case) is returned
-  //     var results = this.props.showData.filter((item) =>
-  //       item.artist.toLowerCase().indexOf(this.state.userSearch) > -1
-  //     );
-  //     // set state to filtered results
-  //     this.setState({searchResults: results});
-  //     console.log('this.state.searchResults: ', this.state.searchResults);
-
-  // }
 
 
   render(){
-
     if (this.state.view === 'main'){
       return (
         <div className="box" >
