@@ -3,7 +3,7 @@ const axios = require('axios');
 const request = require('request');
 const bodyParser = require('body-parser');
 const path = require('path');
-let cors = require('cors');
+const cors = require('cors');
 const app = express();
 const PORT = 8888;
 const db = require('./database/index.js');
@@ -18,6 +18,7 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   next();
