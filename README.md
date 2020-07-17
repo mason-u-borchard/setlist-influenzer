@@ -19,12 +19,15 @@ Setlist Influenzer
 ## Quote from You ##
   >"'Setlist Influenzer' is just one of many ways to pass the time when the cabin fever really starts to kick in. Just like everybody else, I recently started noticing the emails rolling in about artists from all the 2020 shows I had planned cancelling their 2020 tour dates due to the COVID-19 pandemic, and rescheduling for a future TBD time (which was a very smart thing to do don't get me wrong). As a result I decided to make an app that will let the fans themselves help make the comeback tour even better than the original tour would have been.
 
-## How to Get Started ##
-  > Describe how easy it is to get started.
+## How to Get Started as the Client ##
   > Simply enter the band you'd like to see in the search bar, and select the tour date you plan on attending from the search results. Then, fill out the form -- one song per line -- with the songs you would like to hear them play in that order.
 
 ## Customer Quote ##
   > "You see, I grew up in the mid 90's and saw blink-182 during Cheshire Cat-era before they were popular, so I am understandably disappointed that they only play their new not-as-good stuff. Although this app didn't bring Tom back to blink (nor did it fix his poorly maintained voice), it DID cause the current lineup to start adding some of their classic hits such as "Ben Wah Balls", "Wasting Time", and "Carousel" back to the setlist! All thanks 'Setlist Influenzer'!"
 
-## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+
+## How to run app after cloning from Github ##
+  > run "npm install" to install dependencies
+  > run "npm run build"
+  > run "npm start"
+
