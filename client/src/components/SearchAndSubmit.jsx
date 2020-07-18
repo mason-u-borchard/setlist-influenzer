@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
-
+import TM_API_KEY from '../../../bandInfo.js';
 
 class SearchAndSubmit extends React.Component {
   constructor(props) {
@@ -163,7 +163,10 @@ class SearchAndSubmit extends React.Component {
   }
 
   handleSearch() {
-    const searchQuery = this.state.userSearch;
+
+    axios.post('/search', { params: { searchQuery } })
+    // const searchQuery = this.state.userSearch;
+    const searchQuery = 'Above and Beyond';
     console.log(searchQuery);
     axios.get('/search', { params: { searchQuery } })
       .then((data) => this.setState({ searchResults: data.data }))
@@ -172,6 +175,23 @@ class SearchAndSubmit extends React.Component {
         console.log(err);
       });
   }
+
+// ticket master event API no longer has events
+// uncomment and use this handleSearch method when the events are back
+
+  // handleSearch() {
+  //   const searchQuery = this.state.userSearch;
+  //   console.log(searchQuery);
+  //   axios.get(`https://app.ticketmaster.com/discovery/v2/events.json?keyword=${searchQuery}&apikey=${TM_API_KEY}`)
+  //     .then((res) =>
+  //     console.log('get sum data', res.data)
+  //     this.setState({ searchResults: res.data })
+  //     )
+  //     .then(() => { console.log('this.state.searchResults: ', this.state.searchResults); })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
 
   handleRedirect(item) {
     console.log(item);
@@ -194,37 +214,35 @@ class SearchAndSubmit extends React.Component {
               <Router>
                 {' '}
                 <Link to="/search-events">
-                {' '}
-                <input type="button" className="mcButton" value="Search" onClick={(e) => this.handleSearch(e)} />
-              </Link>
+                  {' '}
+                  <input type="button" className="mcButton" value="Search" onClick={(e) => this.handleSearch(e)} />
+                </Link>
               </Router>
               <Route path="/search-events" component={SearchAndSubmit} />
             </span>
           </div>
           <ul className="show-list">
-            { this.state.searchResults.map((item, i) =>
-            // Notice the use of the bind() method. It makes the
-            ind available to the clicked function: (
+            { this.state.searchResults.map((item, i) => (
               <li className="search-item" id={item.id} key={i}>
-            <div className="results-row">
-               <div className="col-12-results-header">
-              <span className="search-item-info">
-              <h2 className="search-header" onClick={(e) => this.handleRedirect(item)}>{item.artist}</h2>
-              <h1>
-              <strong>{item.venue}</strong>
-{' '}
-|   
-{' '}
-              <strong>{item.location}</strong>
-              {' '}
-            </h1>
-              <h2>{item.date}</h2>
-            </span>
-              <img className="artist_pic" src={item.picture} />
-            </div>
-             </div>
-          </li>
-            ),)}
+                <div className="results-row">
+                  <div className="col-12-results-header">
+                    <span className="search-item-info">
+                      <h2 className="search-header" onClick={(e) => this.handleRedirect(item)}>{this.state.userSearch}</h2>
+                      <h1>
+                        <strong>{item.venue}</strong>
+                        {' '}
+                        |
+                        {' '}
+                        <strong>{item.location}</strong>
+                        {' '}
+                      </h1>
+                      <h2>{item.date}</h2>
+                    </span>
+                    <img className="artist_pic" src={item.picture} />
+                  </div>
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -239,9 +257,9 @@ class SearchAndSubmit extends React.Component {
               <Router>
                 {' '}
                 <Link to="/search-events">
-                {' '}
-                <input type="button" className="mcButton" value="Search" onClick={(e) => this.handleSearch(e)} />
-              </Link>
+                  {' '}
+                  <input type="button" className="mcButton" value="Search" onClick={(e) => this.handleSearch(e)} />
+                </Link>
               </Router>
               <Route path="/search-events" component={SearchAndSubmit} />
             </p>
@@ -253,11 +271,13 @@ class SearchAndSubmit extends React.Component {
             <form onSubmit={(e) => this.handleEntry(e)}>
               <div className="setlist-prompt">
                 <h3>
-                  What setlist would you like to see{this.state.currentSelection.artist}
+                  What setlist would you like to see
+                   {this.state.userSearch}
                   {' '}
-                  perform at{this.state.currentSelection.venue}
+                  perform at
+                   {this.state.currentSelection.venue}
                   ?
-</h3>
+                </h3>
               </div>
               <p>
                 {' '}
@@ -315,12 +335,12 @@ class SearchAndSubmit extends React.Component {
             <span>
               <input className="form-input" id="search-input" type="text" placeholder="Find an event" onChange={(e) => this.setState({ userSearch: e.target.value })} />
               <Router>
-        {' '}
-        <Link to="/search-events">
-        {' '}
-        <input type="button" className="mcButton" value="Search" onClick={(e) => this.handleSearch(e)} />
-      </Link>
-      </Router>
+                {' '}
+                <Link to="/search-events">
+                  {' '}
+                  <input type="button" className="mcButton" value="Search" onClick={(e) => this.handleSearch(e)} />
+                </Link>
+              </Router>
               <Route path="/search-events" component={SearchAndSubmit} />
             </span>
           </div>
@@ -329,37 +349,39 @@ class SearchAndSubmit extends React.Component {
           <div className="grid">
             <div className="one">
               <h5>
-        Your{this.state.currentSelection.artist}
-        {' '}
-        setlist
-</h5>
+                Your
+                {this.state.currentSelection.artist}
+                {' '}
+                setlist
+              </h5>
               <ul>
-        <li>{this.state.songs[0]}</li>
-        <li>{this.state.songs[1]}</li>
-        <li>{this.state.songs[2]}</li>
-        <li>{this.state.songs[3]}</li>
-        <li>{this.state.songs[4]}</li>
-        <li>{this.state.songs[5]}</li>
-        <li>{this.state.songs[6]}</li>
-        <li>{this.state.songs[7]}</li>
+                <li>{this.state.songs[0]}</li>
+                <li>{this.state.songs[1]}</li>
+                <li>{this.state.songs[2]}</li>
+                <li>{this.state.songs[3]}</li>
+                <li>{this.state.songs[4]}</li>
+                <li>{this.state.songs[5]}</li>
+                <li>{this.state.songs[6]}</li>
+                <li>{this.state.songs[7]}</li>
 
-      </ul>
+              </ul>
             </div>
 
             <div className="three">
               <h5>
-        Average set for{this.state.currentSelection.artist}
-      </h5>
+                Average set for
+                {this.state.currentSelection.artist}
+              </h5>
               <ul>
-        <li>{this.state.topSetlist[0]}</li>
-        <li>{this.state.topSetlist[1]}</li>
-        <li>{this.state.topSetlist[2]}</li>
-        <li>{this.state.topSetlist[3]}</li>
-        <li>{this.state.topSetlist[4]}</li>
-        <li>{this.state.topSetlist[5]}</li>
-        <li>{this.state.topSetlist[6]}</li>
-        <li>{this.state.topSetlist[7].split(',')[0]}</li>
-      </ul>
+                <li>{this.state.topSetlist[0]}</li>
+                <li>{this.state.topSetlist[1]}</li>
+                <li>{this.state.topSetlist[2]}</li>
+                <li>{this.state.topSetlist[3]}</li>
+                <li>{this.state.topSetlist[4]}</li>
+                <li>{this.state.topSetlist[5]}</li>
+                <li>{this.state.topSetlist[6]}</li>
+                <li>{this.state.topSetlist[7].split(',')[0]}</li>
+              </ul>
             </div>
 
           </div>
