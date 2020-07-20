@@ -4,12 +4,11 @@ mongoose.Promise = global.Promise;
 
 
 const tourDateSchema = new mongoose.Schema({
-  id: { type: Number, unique: true },
   artist: String,
   date: String,
   location: String,
   venue: String,
-  picture: String
+  picture: String,
 }
 );
 

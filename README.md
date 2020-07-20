@@ -27,7 +27,8 @@ Setlist Influenzer
 
 
 ## How to run app after cloning from Github ##
-  > run "npm install" to install dependencies
-  > run "npm run build"
-  > run "npm start"
+  > run "npm install" to install dependencies,
+  > run "npm start" to start server
+  > run "npm run seed" to set up database and populate with initial data,
+  > run "npm run build" to create bundle.js,
 

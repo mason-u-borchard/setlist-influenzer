@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import TM_API_KEY from '../../../bandInfo.js';
 
+
 class SearchAndSubmit extends React.Component {
   constructor(props) {
     super(props);
@@ -25,6 +26,8 @@ class SearchAndSubmit extends React.Component {
     this.handleRedirect = this.handleRedirect.bind(this);
 
     this.calculateTopSetlist = this.calculateTopSetlist.bind(this);
+
+    this.handlePostNewArtist = this.handlePostNewArtist.bind(this);
   }
 
   calculateTopSetlist() {
@@ -163,17 +166,98 @@ class SearchAndSubmit extends React.Component {
   }
 
   handleSearch() {
-
-    axios.post('/search', { params: { searchQuery } })
-    // const searchQuery = this.state.userSearch;
-    const searchQuery = 'Above and Beyond';
+    axios.post('/search', { params: { searchQuery } });
+    const searchQuery = this.state.userSearch;
+    // const searchQuery = 'Above and Beyond';
     console.log(searchQuery);
     axios.get('/search', { params: { searchQuery } })
       .then((data) => this.setState({ searchResults: data.data }))
-      .then(() => { console.log('this.state.searchResults: ', this.state.searchResults); })
+      .then(() => { console.log('this.state.searchResults: ', this.state.searchResults);
+      if (this.state.searchResults.length === 0){
+        this.handlePostNewArtist();
+      }
+    })
       .catch((err) => {
-        console.log(err);
+        console.log('artist not found in db', err);
+
       });
+  }
+
+  handlePostNewArtist() {
+    const newTourData = [
+      {
+        artist: this.state.userSearch,
+        date: "January 16, 2021",
+        time: "18:00",
+        venue: "Red Rocks Amphitheatre",
+        location: "Morrison, CO, USA",
+        picture: "https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/abgtposter1.jpg"
+      },
+      {
+        artist: this.state.userSearch,
+        date: "February 2, 2021",
+        time: "20:30",
+        venue: "Ekebergveien",
+        location: "Oslo, Norway",
+        picture: "https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/abgtposter3.png"
+      },
+      {
+        artist: this.state.userSearch,
+        date: "April 13, 2021",
+        time: "17:30",
+        venue: "Gorge Amphitheatre",
+        location: "George, WA, USA",
+        picture: "abgtposter2.jpg"
+      },
+      {
+        artist: this.state.userSearch,
+        date: "June 22, 2021",
+        time: "18:30",
+        venue: "AntiSocial",
+        location: "Mumbai, India",
+        picture: "https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/aboveandbeyondacoustic.jpg"
+      },
+      {
+        artist: this.state.userSearch,
+        date: "June 30, 2021",
+        time: "19:00",
+        venue: "El Plaza Condesa",
+        location: "Mexico City, Mexico",
+        picture: "https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/abgtposter4.png"
+      },
+      {
+        artist: this.state.userSearch,
+        date: "July 19, 2021",
+        time: "18:00",
+        venue: "Starland Ballroom",
+        location: "Sayreville, New Jersey, USA",
+        picture: "https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/abgtposter5.jpg"
+      },
+      {
+        artist: this.state.userSearch,
+        date: "September 5, 2021",
+        time: "21:00",
+        venue: "Fox Theatre",
+        location: "Oakland, CA, USA",
+        picture: "https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/abgtposter1.jpg"
+      },
+      {
+        artist: this.state.userSearch,
+        date: "October 31, 2021",
+        time: "19:30",
+        venue: "Inkonst",
+        location: "Malmö, Sweden",
+        picture: "https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/aboveandbeyondacoustic.jpg"
+      }
+    ];
+
+    for (var i = 0; i < newTourData.length; i++){
+      axios.post('/tourdates', newTourData[i])
+      .catch((err) => {
+        console.log('error adding new artist to db: ', err);
+      });
+    };
+    this.handleSearch();
   }
 
 // ticket master event API no longer has events

@@ -32,7 +32,7 @@ const chevronWidth = 40;
     super(props);
     console.log('this.props carousel: ', this.props)
     this.state = {
-      items: [ 'https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/abgt2.jpg',
+      items: ['http://userserve-ak.last.fm/serve/50/342437.jpg',
       'https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/jrad1280x835.jpg',
       'https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/concert4.jpg',
       'https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/concert1.jpg',
