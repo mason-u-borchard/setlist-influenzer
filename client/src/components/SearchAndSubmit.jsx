@@ -191,7 +191,7 @@ class SearchAndSubmit extends React.Component {
         time: "18:00",
         venue: "Red Rocks Amphitheatre",
         location: "Morrison, CO, USA",
-        picture: "https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/abgtposter1.jpg"
+        picture: "https://tourdates-info.s3-us-west-1.amazonaws.com/blink2012UK.jpg"
       },
       {
         artist: this.state.userSearch,
@@ -199,7 +199,7 @@ class SearchAndSubmit extends React.Component {
         time: "20:30",
         venue: "Ekebergveien",
         location: "Oslo, Norway",
-        picture: "https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/abgtposter3.png"
+        picture: "https://tourdates-info.s3-us-west-1.amazonaws.com/primusposter2013AZ.jpg"
       },
       {
         artist: this.state.userSearch,
@@ -207,7 +207,7 @@ class SearchAndSubmit extends React.Component {
         time: "17:30",
         venue: "Gorge Amphitheatre",
         location: "George, WA, USA",
-        picture: "abgtposter2.jpg"
+        picture: "https://tourdates-info.s3-us-west-1.amazonaws.com/tfbmanchesterposter.jpg"
       },
       {
         artist: this.state.userSearch,
@@ -215,7 +215,7 @@ class SearchAndSubmit extends React.Component {
         time: "18:30",
         venue: "AntiSocial",
         location: "Mumbai, India",
-        picture: "https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/aboveandbeyondacoustic.jpg"
+        picture: "https://tourdates-info.s3-us-west-1.amazonaws.com/inflames2009.jpg"
       },
       {
         artist: this.state.userSearch,
@@ -223,7 +223,7 @@ class SearchAndSubmit extends React.Component {
         time: "19:00",
         venue: "El Plaza Condesa",
         location: "Mexico City, Mexico",
-        picture: "https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/abgtposter4.png"
+        picture: "https://tourdates-info.s3-us-west-1.amazonaws.com/blink-tfbposter2017.png"
       },
       {
         artist: this.state.userSearch,
@@ -231,7 +231,7 @@ class SearchAndSubmit extends React.Component {
         time: "18:00",
         venue: "Starland Ballroom",
         location: "Sayreville, New Jersey, USA",
-        picture: "https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/abgtposter5.jpg"
+        picture: "https://tourdates-info.s3-us-west-1.amazonaws.com/cyprushill.jpg"
       },
       {
         artist: this.state.userSearch,
@@ -239,7 +239,7 @@ class SearchAndSubmit extends React.Component {
         time: "21:00",
         venue: "Fox Theatre",
         location: "Oakland, CA, USA",
-        picture: "https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/abgtposter1.jpg"
+        picture: "https://tourdates-info.s3-us-west-1.amazonaws.com/AVA-love-2010poster.jpg"
       },
       {
         artist: this.state.userSearch,
@@ -247,7 +247,7 @@ class SearchAndSubmit extends React.Component {
         time: "19:30",
         venue: "Inkonst",
         location: "Malmö, Sweden",
-        picture: "https://sdc-bucket-9999999.s3-us-west-1.amazonaws.com/aboveandbeyondacoustic.jpg"
+        picture: "https://tourdates-info.s3-us-west-1.amazonaws.com/AVA_1_Mercury_FINAL_MTP.jpg"
       }
     ];
 
@@ -464,7 +464,7 @@ class SearchAndSubmit extends React.Component {
                 <li>{this.state.topSetlist[4]}</li>
                 <li>{this.state.topSetlist[5]}</li>
                 <li>{this.state.topSetlist[6]}</li>
-                <li>{this.state.topSetlist[7].split(',')[0]}</li>
+                <li>{this.state.topSetlist[7].split(',')}</li>
               </ul>
             </div>
 
