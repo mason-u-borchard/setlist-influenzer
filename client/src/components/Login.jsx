@@ -8,11 +8,13 @@ class Login extends React.Component {
     this.state = {
       email: "",
       password: "",
+      loggedIn: false,
     };
 
     this.update = this.update.bind(this);
 
     this.displayLogin = this.displayLogin.bind(this);
+    this.clickButton = this.clickButton.bind(this);
   }
 
   update(e) {
@@ -30,14 +32,28 @@ class Login extends React.Component {
     this.setState({
       email: "",
       password: "",
+      loggedIn: true,
+    });
+  }
+
+  clickButton(e) {
+    e.preventDefault();
+    console.log("You are logged in");
+    console.log(this.state);
+    this.setState({
+      loggedIn: true,
     });
   }
 
   render() {
     return (
       <div className="auth">
-        <form onSubmit={this.displayLogin}>
-          <h2>Login to your account</h2>
+        <form onSubmit={this.clickButton}>
+          <h2>
+            {this.state.loggedIn === true
+              ? "Welcome Back, \n" + this.state.email + "!"
+              : "Login To Your Account"}
+          </h2>
           <div className="username">
             <input
               className="login"
@@ -69,7 +85,12 @@ class Login extends React.Component {
             >
               Log In
             </button> */}
-            <input id="login-redirect" type="submit" value="Login" />
+            <input
+              id="login-redirect"
+              type="submit"
+              value="Login"
+              onClick={this.update}
+            />
           </p>
           <p>
             <Link to="/register">

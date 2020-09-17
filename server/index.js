@@ -40,18 +40,16 @@ app.get("/search", (req, res) => {
   console.log("req.query: ", req.query);
   console.log("req.query.searchQuery: ", String(req.query.searchQuery));
 
-  TourDates.find(
-    {
-      artist: req.query.searchQuery,
-    },
-    (err, results) => {
-      if (err) {
-        return console.log("error getting from db: ", err);
-      }
+  TourDates.find({
+    artist: req.query.searchQuery,
+  })
+    .then((results) => {
       res.json(results);
       console.log(results);
-    }
-  );
+    })
+    .catch((err) => {
+      return console.log("error getting from db: ", err);
+    });
 });
 
 // / gets all posted setlists for  artist at that show
