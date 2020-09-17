@@ -1,11 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
-import App from './App.jsx';
-import Shows from './components/Shows.jsx';
-import Contact from './components/Contact.jsx';
-import Login from './components/Login.jsx';
-import Register from './components/Register.jsx';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Route, Link, BrowserRouter as Router } from "react-router-dom";
+import { Auth0Provider } from "@auth0/auth0-react";
+import App from "./App.jsx";
+import Shows from "./components/Shows.jsx";
+import Contact from "./components/Contact.jsx";
+import Login from "./components/Login.jsx";
+import Register from "./components/Register.jsx";
 import SearchAndSubmit from "./components/SearchAndSubmit.jsx";
 
 const routing = (
@@ -32,13 +33,19 @@ const routing = (
       <Route exact path="/shows" component={Shows} />
       <Route exact path="/contact" component={Contact} />
 
-        <Route exact path="/register" component={Register} />
+      <Route exact path="/register" component={Register} />
       <Route exact path="/login" component={Login} />
     </div>
   </Router>
-)
+);
 
 ReactDOM.render(
-    routing,
-  document.getElementById('root')
+  routing,
+  // <Auth0Provider
+  //   domain="father-john-mister-t.us.auth0.com"
+  //   clientId="3KSWWuZpX1VkkoIWkgrSiTHTM7sbt7ds"
+  //   redirectUri={window.location.origin}
+  // ></Auth0Provider>,
+
+  document.getElementById("root")
 );
