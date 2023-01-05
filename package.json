@@ -47,12 +47,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cranjis-mcbasketball/hrr44-mvp.git"
+    "url": "git+https://github.com/mason-u-borchard/hrr44-mvp.git"
   },
-  "author": "Mason Borchard (cranjis-mcbasketball)",
+  "author": "Mason Borchard (mason-u-borchard)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/cranjis-mcbasketball/hrr44-mvp/issues"
+    "url": "https://github.com/mason-u-borchard/hrr44-mvp/issues"
   },
-  "homepage": "https://github.com/cranjis-mcbasketball/hrr44-mvp#readme"
+  "homepage": "https://github.com/mason-u-borchard/hrr44-mvp#readme"
 }
